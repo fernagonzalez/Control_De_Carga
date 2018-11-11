@@ -9,4 +9,4 @@ p = polyfit(x,y,9); % Coeficientes de un polinomio de grado 9
 % Grafico en el rango que me interesa
 x1=[9:0.1:13];
 f =polyval(p,x1);
-plot(xD,f), xlim([9.8 12.6]), ylim([0 100])
+plot(x1,f), xlim([9.8 12.6]), ylim([0 100])
