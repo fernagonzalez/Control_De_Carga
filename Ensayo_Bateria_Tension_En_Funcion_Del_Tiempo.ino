@@ -5,7 +5,7 @@
 // La idea consiste en realizar un ensayo a la batería, para determinar las curvas de tension en funcion del tiempo
 // y mediante inspeccion determinar los picos y el tiempo que trancurre entre ambos, tanto de carga como de descarga.
 // De esta manera, por ejemplo, cuando conectamos una bateria de la cual no sabemos cual es su SOC inicial
-// midiendo el tiempo y registrando los valores de tension, por comparación podremos tener una estimación 
+// midiendo el tiempo y registrando los valores de tension, por comparación podremos tener una estimación
 // del SOC inicial.
 
 // Éste ensayo debe realizarse antes de implemtar el circuito, para conocer la bateria con la que estamos trabajando.
@@ -24,11 +24,11 @@ void setup(){
 }
 
 void loop(){
- 
+
   unsigned long Tiempo_Actual = millis();
- 
+
   if(Tiempo_Actual - Tiempo_Previo > Intervalo) {
-    previousMillis = currentMillis;  
+    previousMillis = currentMillis;
     }
     // ver pagina 61  del trabajo de cisneros
     // estimacion de un ciclo de carga/descarga: 485 minutos
