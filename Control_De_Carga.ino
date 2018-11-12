@@ -24,6 +24,8 @@ float Umbral_Positivo = 12.1;
 
 int Periodo_Array_Corriente_Subrutina = 0;
 
+float SOC_Ultimo;
+
 void setup()
 {
   Serial.begin(9600);
@@ -57,6 +59,9 @@ void loop()
   Serial.print("mA  ");
   Serial.println(" ");
   Serial.println("---------");
+
+  // Estimación inicial del SOC_Actual
+  SOC = Estimacion_Primaria_SOC_Con_Tension();
 
   //888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
 
