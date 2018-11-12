@@ -56,9 +56,10 @@ void loop(){
 
          if (logFile) {
          //int value = readSensor;
-         logFile.print("t = ");
+         //logFile.print("t = ");
          logFile.print(Tiempo_Actual);
-         logFile.print(", V_bat = ");
+        // logFile.print(", V_bat = ");
+         logFile.print(",");
          logFile.println(V_bateria);
 
          logFile.close();
