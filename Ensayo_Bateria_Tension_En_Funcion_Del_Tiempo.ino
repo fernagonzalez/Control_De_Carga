@@ -13,25 +13,62 @@
 // y la curva se modificará de acuerdo al desgaste, por lo que es un aspecto a tener en cuenta.
 
 
-https://www.luisllamas.es/medir-nivel-luz-con-arduino-y-fotoresistencia-ldr/
-https://www.luisllamas.es/tarjeta-micro-sd-arduino/
+//https://www.luisllamas.es/medir-nivel-luz-con-arduino-y-fotoresistencia-ldr/
+//https://www.luisllamas.es/tarjeta-micro-sd-arduino/
+
+#include <Arduino.h>
+#include <SD.h>
+
+File logFile;
 
 long Tiempo_Previo = 0;
 long Intervalo = 1000;
 
 void setup(){
+  Serial.begin(115200);
 
+  Serial.print(F("Iniciando SD ..."));
+  if (!SD.begin(9))
+  {
+    Serial.println(F("Error al iniciar"));
+    return;
+  }
+  Serial.println(F("Iniciado correctamente"));
 }
 
 void loop(){
 
   unsigned long Tiempo_Actual = millis();
+  V_bateria = ina219.getBusVoltage_V();
 
   if(Tiempo_Actual - Tiempo_Previo > Intervalo) {
-    previousMillis = currentMillis;
+    Tiempo_Previo = Tiempo_Actual;
     }
     // ver pagina 61  del trabajo de cisneros
     // estimacion de un ciclo de carga/descarga: 485 minutos
     // tener en cuenta que la corriente de carga varia
     // tener en cuenta que se carga hasta un soc de 60 y se descarga hasta el 10%
+
+
+
+    // Abrir archivo y escribir valor
+    logFile = SD.open("datalog3.txt", FILE_WRITE);
+
+         if (logFile) {
+         //int value = readSensor;
+         logFile.print("t = ");
+         logFile.print(Tiempo_Actual);
+         logFile.print(", V_bat = ");
+         logFile.println(V_bateria);
+
+         logFile.close();
+                      }
+
+    else {
+     Serial.println("Error al abrir el archivo");
+          }
+
+    delay(500);
+
+
 }
