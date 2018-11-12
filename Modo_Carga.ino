@@ -44,10 +44,10 @@ Serial.println("Calculando SOC");
 
     float Delta_SOC = 100 * Q_ganado / Q_nominal;
     SOC += Delta_SOC;
+    SOC_Ultimo = SOC;
 
     Valor_SOC_Coulumb_Counting();
 
   }
   return 0;
 }
-
