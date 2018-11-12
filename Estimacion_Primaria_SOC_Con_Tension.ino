@@ -1,18 +1,17 @@
 
-void Estimacion_SOC()
+void Estimacion_Primaria_SOC_Con_Tension()
 {
-// int V_bateria=12;
-int Capacidad [21]={0, 5, 10, 15 ,20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100};
-float Voltaje [21]={9.82, 10.83, 11.06, 11.12, 11.18, 11.24, 11.3, 11.36, 11.39, 11.45, 11.51, 11.56, 11.62, 11.74, 11.86, 11.95, 12.07, 12.25, 12.33, 12.45, 12.6};
+// Polinomio calculado con MATLAB, que nos da el porcentaje de descarga
+// en función de la tensión en bornes de la batería.
 
-float Error[21];
-    for (int i=0; i<=21; i++)
-    {
-      Error[i]=Voltaje[i]-V_bateria;
+Porcentaje_Descarga = 1.0e+09 * (-0.0010*x^5 + 0.0131*x^4 - 0.1150*x^3 + 0.6313*x^2 - 1.9766*x + 2.7039);
+// Donde x es la tensión en bornes de la bateria.
+float SOC_Inicial = SOC_Ultimo - Porcentaje_Descarga;
+
+// En todos los modos se registra el último valor del SOC en la variable SOC_Ultimo
+// para usar esta información en el próximo ciclo de uso.
+
+return SOC = SOC_Inicial
+
+
     }
-float Error_Absoluto=fabs(Error);
-    Serial.println(Error_Absoluto);
-    delay(2000);
-    }
-
-
